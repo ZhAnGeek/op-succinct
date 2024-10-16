@@ -152,16 +152,17 @@ impl<O: CommsClient + Send + Sync + Debug> MultiBlockDerivationDriver<O> {
         while attributes.is_none() {
             match self.pipeline.step(self.l2_safe_head).await {
                 StepResult::PreparedAttributes => {
-                    debug!(target: "client_derivation_driver", "Stepped derivation pipeline")
+                    println!("client_derivation_driver {}", "Stepped derivation pipeline")
                 }
                 StepResult::AdvancedOrigin => {
-                    debug!(target: "client_derivation_driver", "Advanced origin")
+                    println!("client_derivation_driver {}", "Advanced origin");
                 }
                 StepResult::OriginAdvanceErr(e) => {
-                    error!(target: "client_derivation_driver", "Failed to advance origin: {:?}", e)
+                    println!("client_derivation_driver {} {:?}", "Failed to advance origin:", e);
+                    panic!("Failed to advance origin: {:?}", e);
                 }
                 StepResult::StepFailed(e) => {
-                    error!(target: "client_derivation_driver", "Failed to step derivation pipeline: {:?}", e)
+                    println!("client_derivation_driver {} {:?}", "Failed to step derivation pipeline:", e)
                 }
             }
 
@@ -211,6 +212,7 @@ impl<O: CommsClient + Send + Sync + Debug> MultiBlockDerivationDriver<O> {
             .block_info_by_number(safe_head_info.l1_origin.number)
             .await?;
 
+        println!("l1 origin number fetched {}", safe_head_info.l1_origin.number);
         Ok((
             l1_origin,
             safe_head_info,

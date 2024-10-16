@@ -38,17 +38,17 @@ kzg-rs = { version = "0.2.2" }
 
 # kona
 # Note: Switch to latest version of kona once the std::process::Command issue is resolved.
-kona-common = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-common-proc = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-preimage = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged", features = [
+kona-common = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-common-proc = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-preimage = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged", features = [
     "rkyv",
 ] }
-kona-primitives = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-mpt = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-derive = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged", default-features = false }
-kona-executor = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-client = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
-kona-host = { git = "https://github.com/moongate-forks/kona", branch = "ratan/native-client-command-bugged" }
+kona-primitives = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-mpt = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-derive = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged", default-features = false }
+kona-executor = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-client = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
+kona-host = { git = "https://github.com/ZhAnGeek/kona", branch = "ratan/native-client-command-bugged" }
 
 # op-succinct
 op-succinct-prove = { path = "scripts/prove" }

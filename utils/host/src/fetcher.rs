@@ -400,6 +400,9 @@ impl OPSuccinctDataFetcher {
             l2_storage_hash: l2_claim_storage_hash.0.into(),
             l2_claim_hash: l2_claim_hash.0.into(),
         };
+        println!("csr {:?}", l2_claim_state_root.0);
+        println!("csh {:?}", l2_claim_storage_hash.0);
+        println!("ch {:?}", l2_claim_hash.0);
         let l2_claim = keccak256(l2_claim_encoded.abi_encode());
 
         // Get L1 head.

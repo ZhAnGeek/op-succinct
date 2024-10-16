@@ -1,5 +1,7 @@
 use anyhow::Result;
+use tokio::io::{AsyncBufReadExt, BufReader};
 use std::time::Duration;
+use std::process::Stdio;
 
 use kona_host::HostCli;
 
@@ -88,10 +90,19 @@ impl WitnessGenExecutor {
         let args = convert_host_cli_to_args(host_cli);
 
         // Run the native host runner.
-        let child = tokio::process::Command::new(target_dir)
+        let mut child = tokio::process::Command::new(target_dir)
             .args(&args)
-            .env("RUST_LOG", "info")
+            .stdout(Stdio::piped())
+            .env("RUST_LOG", "trace")
             .spawn()?;
+        let stdout = child.stdout.take().expect("Failed to capture stdout");
+        let reader = BufReader::new(stdout);
+        let mut lines = reader.lines();
+        tokio::spawn(async move {
+            while let Some(line) = lines.next_line().await.unwrap() {
+                println!("Output: {}", line);
+            }
+        });
         self.ongoing_processes.push(WitnessGenProcess {
             child,
             exec: host_cli.exec.clone().unwrap(),

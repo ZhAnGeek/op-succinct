@@ -72,7 +72,7 @@ run-client-native l2_block_num l1_rpc='${L1_RPC}' l1_beacon_rpc='${L1_BEACON_RPC
   echo "Building client program..."
   cargo build --bin fault-proof --profile release-client-lto
   echo "Running host program with native client program..."
-  cargo run --bin op-succinct-witnessgen --release -- \
+  cargo run --bin native_host_runner --release -- \
     --l1-head $L1_HEAD \
     --l2-head $L2_HEAD \
     --l2-claim $L2_CLAIM \
